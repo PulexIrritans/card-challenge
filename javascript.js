@@ -1,3 +1,5 @@
+// Global constants and variables
+
 const cardsContainer = document.querySelector("[data-js=cards]");
 const form = document.querySelector("[data-js=form]");
 const filterForm = document.querySelector("[data-js=filter-form]")
@@ -24,10 +26,15 @@ let cards = [
   },
 ];
 
+
+// Event Listener for Filter
+
 filterForm.addEventListener('change', () => {
     currentFilter = filterForm.elements['tag-filter'].value;
     renderCards();
   })
+
+// Event Listener for question form submit (calls function render cards)  
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -51,6 +58,8 @@ form.addEventListener("submit", (event) => {
   form.reset();
   questionElement.focus();
 });
+
+// Function that creates and adds the new question card to DOM
 
 function renderCards() {
   cardsContainer.innerHTML = "";
