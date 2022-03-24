@@ -26,6 +26,10 @@ let cards = [
   },
 ];
 
+const filters = [
+    'git', 'shell', 'html', 'basic', 'web', 'css'
+]
+
 
 // Event Listener for Filter
 
@@ -57,7 +61,38 @@ form.addEventListener("submit", (event) => {
 
   form.reset();
   questionElement.focus();
+
+  appendFilter(newCard);
 });
+
+// Function to append filter
+
+function appendFilter(card) {
+    const fieldsetElement = document.querySelector('.fieldset')
+
+
+    const newfilters = [];
+    card.tags.forEach((tag) => {
+        if (!filters.includes(tag)) newfilters.push(tag)
+    })
+
+    newfilters.forEach((newfilter) => {
+    const newLabelElement = document.createElement('label')
+    const newInputElement = document.createElement('input')
+    
+    newLabelElement.classList.add('tag-label')
+    newLabelElement.textContent = newfilter
+
+    newInputElement.classList.add('tag-input')
+    newInputElement.setAttribute("type", "radio")
+    newInputElement.setAttribute("name", "tag-filter")
+    newInputElement.setAttribute("value", newfilter)
+
+    fieldsetElement.append(newInputElement)
+    fieldsetElement.append(newLabelElement)
+
+    })
+}
 
 // Function that creates and adds the new question card to DOM
 
